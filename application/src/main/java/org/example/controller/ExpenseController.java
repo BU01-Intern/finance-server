@@ -7,6 +7,7 @@ import org.example.request.ExpenseRequest;
 import org.example.request.ExpenseSearchRequest;
 import org.example.service.ExpenseService;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,5 +38,10 @@ public class ExpenseController {
     @PutMapping("/update")
     Response<Expense> updateExpense(@RequestBody ExpenseRequest request) {
         return expenseService.updateExpense(request);
+    }
+
+    @DeleteMapping("/delete")
+    Response<Expense> deleteExpense(@RequestBody ExpenseRequest request) {
+        return expenseService.deleteExpense(request);
     }
 }

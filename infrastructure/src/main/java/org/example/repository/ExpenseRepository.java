@@ -12,6 +12,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ExpenseRepository extends JpaRepository<Expense, Integer> {
 
-    @Query("SELECT expense FROM Expense expense WHERE expense.name LIKE %:#{#request.name}% AND expense.accountNumber LIKE %:#{#request.accountNumber}%")
+    @Query("SELECT expense FROM Expense expense WHERE expense.name LIKE %:#{#request.name}% AND expense.accountNumber LIKE %:#{#request.accountNumber}% AND expense.isDeleted = 0")
     Page<Expense> searchExpense(@Param("request") ExpenseSearchRequest request, Pageable pageable);
 }

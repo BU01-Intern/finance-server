@@ -5,5 +5,6 @@ CREATE TABLE IF NOT EXISTS `expense`(
     `type` VARCHAR(255) NULL,
     `is_distributed` TINYINT(1) NULL,
     `status` INT NULL,
-    `created_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP()
+    `created_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    `is_deleted` TINYINT(1) NOT NULL DEFAULT 0
 );

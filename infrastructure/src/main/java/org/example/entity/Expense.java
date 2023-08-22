@@ -32,4 +32,6 @@ public class Expense {
     @CreatedDate
     @Column(name = "created_time", nullable = false, insertable = false)
     private LocalDateTime createdTime;
+
+    private Boolean isDeleted = false;
 }

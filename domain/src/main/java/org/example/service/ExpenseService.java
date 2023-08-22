@@ -13,4 +13,6 @@ public interface ExpenseService {
     Response<Expense> insertExpense(ExpenseRequest request);
 
     Response<Expense> updateExpense(ExpenseRequest request);
+
+    Response<Expense> deleteExpense(ExpenseRequest request);
 }

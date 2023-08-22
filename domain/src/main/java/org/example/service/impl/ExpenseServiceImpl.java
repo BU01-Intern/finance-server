@@ -59,4 +59,19 @@ public class ExpenseServiceImpl implements ExpenseService {
         Expense save = expenseRepository.save(expense);
         return new Response<>(save);
     }
+
+    @Override
+    public Response<Expense> deleteExpense(ExpenseRequest request) {
+        if (request.getId() == null) {
+            throw new CommonException(HttpStatus.BAD_REQUEST, "Bắt buột nhập id");
+        }
+
+        Expense expense = expenseRepository.findById(request.getId())
+                .orElseThrow(() -> new CommonException(HttpStatus.BAD_REQUEST, "Không tìm thấy"));
+
+        expense.setIsDeleted(true);
+
+        Expense save = expenseRepository.save(expense);
+        return new Response<>(save);
+    }
 }
