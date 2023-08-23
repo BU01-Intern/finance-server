@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import javax.validation.Valid;
 import org.example.dto.PageResponse;
 import org.example.dto.Response;
 import org.example.entity.Expense;
@@ -30,12 +31,12 @@ public class ExpenseController {
     }
 
     @PostMapping("/insert")
-    Response<Expense> insertExpense(@RequestBody ExpenseRequest request) {
+    Response<Expense> insertExpense(@Valid @RequestBody ExpenseRequest request) {
         return expenseService.insertExpense(request);
     }
 
     @PutMapping("/update")
-    Response<Expense> updateExpense(@RequestBody ExpenseRequest request) {
+    Response<Expense> updateExpense(@Valid @RequestBody ExpenseRequest request) {
         return expenseService.updateExpense(request);
     }
 
