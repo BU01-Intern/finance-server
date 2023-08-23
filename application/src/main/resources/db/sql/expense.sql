@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS `expense`(
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `name` VARCHAR(255) NOT NULL,
-    `account_number` BIGINT NOT NULL,
+    `account_number` VARCHAR(20) NOT NULL,
     `type` VARCHAR(255) NULL,
     `is_distributed` TINYINT(1) NULL,
     `status` INT NULL,

@@ -21,7 +21,7 @@ public class Expense {
 
     private String name;
 
-    private Long accountNumber;
+    private String accountNumber;
 
     private String type;
 
