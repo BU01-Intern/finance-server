@@ -11,4 +11,7 @@
             ALTER TABLE example MODIFY COLUMN id int(11) auto_increment NOT NULL;
         </sql>
     </changeSet>
+    <changeSet id="20230821.5791" author="dat">
+        <sqlFile path="/db/sql/expense.sql" />
+    </changeSet>
 </databaseChangeLog>

@@ -26,6 +26,7 @@ public class ExampleController {
     public Response<ExampleEntity> insertExample(@RequestBody ExampleRequest request) {
         return exampleService.insertExample(request);
     }
+
     @PutMapping("/update")
     public Response<ExampleEntity> updateExample(@RequestBody ExampleRequest request) {
         return exampleService.updateExample(request);
