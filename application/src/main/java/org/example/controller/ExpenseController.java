@@ -9,10 +9,12 @@ import org.example.dto.Response;
 import org.example.entity.Expense;
 import org.example.request.ExpenseRequest;
 import org.example.request.ExpenseSearchRequest;
+import org.example.request.OnUpdate;
 import org.example.service.ExpenseService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/expense")
+@Validated
 public class ExpenseController {
 
     private final ExpenseService expenseService;
@@ -43,6 +46,7 @@ public class ExpenseController {
     }
 
     @PutMapping("/update")
+    @Validated(OnUpdate.class)
     Response<Expense> updateExpense(@Valid @RequestBody ExpenseRequest request) {
         return expenseService.updateExpense(request);
     }

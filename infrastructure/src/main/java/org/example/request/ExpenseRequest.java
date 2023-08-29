@@ -1,6 +1,7 @@
 package org.example.request;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +9,7 @@ import lombok.Setter;
 @Setter
 public class ExpenseRequest {
 
+    @NotNull(groups = OnUpdate.class, message = "ID is required.")
     private Integer id;
 
     @NotBlank(message = "Name cannot be empty.")
