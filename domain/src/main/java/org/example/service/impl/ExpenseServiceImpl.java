@@ -1,5 +1,12 @@
 package org.example.service.impl;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.List;
+
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.streaming.SXSSFSheet;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.example.dto.PageResponse;
 import org.example.dto.Response;
 import org.example.entity.Expense;
@@ -23,8 +30,7 @@ public class ExpenseServiceImpl implements ExpenseService {
 
     @Override
     public PageResponse<Expense> searchExpense(ExpenseSearchRequest request) {
-        Page<Expense> page =
-                expenseRepository.searchExpense(request, request.getPageable());
+        Page<Expense> page = expenseRepository.searchExpense(request, request.getPageable());
         return new PageResponse<>(page.getContent(), page.getTotalElements());
     }
 
@@ -73,5 +79,45 @@ public class ExpenseServiceImpl implements ExpenseService {
 
         Expense save = expenseRepository.save(expense);
         return new Response<>(save);
+    }
+
+    @Override
+    public byte[] export() throws IOException {
+        List<Expense> results = expenseRepository.findAll();
+
+        try (SXSSFWorkbook workbook = new SXSSFWorkbook()) {
+            SXSSFSheet sheet = workbook.createSheet("ExpenseList");
+
+            Row row = sheet.createRow(0);
+            row.createCell(0).setCellValue("id");
+            row.createCell(1).setCellValue("name");
+            row.createCell(2).setCellValue("account_number");
+            row.createCell(3).setCellValue("type");
+            row.createCell(4).setCellValue("is_distributed");
+            row.createCell(5).setCellValue("status");
+            row.createCell(6).setCellValue("created_time");
+            row.createCell(7).setCellValue("is_deleted");
+
+            for (int i = 0; i < results.size(); i++) {
+                row = sheet.createRow(i + 1);
+                Expense expense = results.get(i);
+                row.createCell(0).setCellValue(expense.getId());
+                row.createCell(1).setCellValue(expense.getName());
+                row.createCell(2).setCellValue(expense.getAccountNumber());
+                row.createCell(3).setCellValue(expense.getType());
+                row.createCell(4).setCellValue(expense.getIsDistributed());
+                row.createCell(5).setCellValue(expense.getStatus());
+                row.createCell(6).setCellValue(expense.getCreatedTime());
+                row.createCell(7).setCellValue(expense.getIsDeleted());
+            }
+
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            try {
+                workbook.write(bos);
+            } finally {
+                bos.close();
+            }
+            return bos.toByteArray();
+        }
     }
 }
