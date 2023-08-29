@@ -21,6 +21,7 @@
         <springdoc.version>1.6.6</springdoc.version>
         <jackson.version>2.15.2</jackson.version>
         <openfeign.version>3.1.1</openfeign.version>
+        <poi-ooxml.version>5.2.3</poi-ooxml.version>
     </properties>
 
 
@@ -124,6 +125,12 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-validation</artifactId>
                 <version>${spring-boot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi-ooxml.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
