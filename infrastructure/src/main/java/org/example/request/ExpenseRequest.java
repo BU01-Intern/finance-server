@@ -18,7 +18,7 @@ public class ExpenseRequest {
     @NotBlank(message = "Account number cannot be empty.")
     private String accountNumber;
 
-    private String type;
-    private Boolean isDistributed;
-    private Integer status;
+    private String type = "";
+    private Boolean isDistributed = false;
+    private Integer status = 0;
 }
