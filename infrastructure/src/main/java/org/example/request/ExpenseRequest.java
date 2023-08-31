@@ -2,6 +2,7 @@ package org.example.request;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,6 +17,7 @@ public class ExpenseRequest {
     private String name;
 
     @NotBlank(message = "Account number cannot be empty.")
+    @Pattern(regexp = "[\\d]{0,20}", message = "Only digits are allowed.")
     private String accountNumber;
 
     private String type = "";
