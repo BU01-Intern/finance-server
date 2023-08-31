@@ -2,13 +2,12 @@ package org.example.controller;
 
 import java.io.IOException;
 
-import javax.validation.Valid;
-
 import org.example.dto.PageResponse;
 import org.example.dto.Response;
 import org.example.entity.Expense;
 import org.example.request.ExpenseRequest;
 import org.example.request.ExpenseSearchRequest;
+import org.example.request.OnCreate;
 import org.example.request.OnUpdate;
 import org.example.service.ExpenseService;
 import org.springframework.http.HttpHeaders;
@@ -26,7 +25,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/expense")
-@Validated
 public class ExpenseController {
 
     private final ExpenseService expenseService;
@@ -41,13 +39,14 @@ public class ExpenseController {
     }
 
     @PostMapping("/insert")
-    Response<Expense> insertExpense(@Valid @RequestBody ExpenseRequest request) {
+    Response<Expense> insertExpense(
+            @Validated(OnCreate.class) @RequestBody ExpenseRequest request) {
         return expenseService.insertExpense(request);
     }
 
     @PutMapping("/update")
-    @Validated(OnUpdate.class)
-    Response<Expense> updateExpense(@Valid @RequestBody ExpenseRequest request) {
+    Response<Expense> updateExpense(
+            @Validated(OnUpdate.class) @RequestBody ExpenseRequest request) {
         return expenseService.updateExpense(request);
     }
 

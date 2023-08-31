@@ -1,4 +1,4 @@
-package org.example.controller;
+package org.example.exception;
 
 import java.util.HashMap;
 import java.util.Map;

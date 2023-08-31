@@ -13,11 +13,13 @@ public class ExpenseRequest {
     @NotNull(groups = OnUpdate.class, message = "ID is required.")
     private Integer id;
 
-    @NotBlank(message = "Name cannot be empty.")
+    @NotBlank(groups = {OnCreate.class, OnUpdate.class}, message = "Name cannot be empty.")
     private String name;
 
-    @NotBlank(message = "Account number cannot be empty.")
-    @Pattern(regexp = "[\\d]{0,20}", message = "Only digits are allowed.")
+    @NotBlank(groups = {OnCreate.class, OnUpdate.class},
+            message = "Account number cannot be empty.")
+    @Pattern(groups = {OnCreate.class, OnUpdate.class}, regexp = "[\\d]{0,20}",
+            message = "Only digits are allowed.")
     private String accountNumber;
 
     private String type = "";
