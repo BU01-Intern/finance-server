@@ -18,6 +18,7 @@ public class PageRequest {
     private int size = 20;
     private String keyword;
 
+    @JsonProperty("sorts")
     private List<String> sorts;
 
     public int getSize() {
